@@ -1,0 +1,23 @@
+org: gymnasium
+app: marusia
+service: marusia-skill-echo-python
+
+plugins:
+  - serverless-offline
+
+custom:
+  stage: ${self:provider.stage}
+
+provider:
+  name: aws
+  runtime: python3.8
+  apiGateway:
+    shouldStartNameWithService: true
+
+functions:
+  webhook:
+    handler: handler.webhook
+    events:
+      - http:
+          path: webhook
+          method: post
