@@ -1,6 +1,6 @@
 org: gymnasium
 app: marusia
-service: marusia-skill-echo-python
+service: home_training
 
 plugins:
   - serverless-offline
