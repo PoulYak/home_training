@@ -48,9 +48,7 @@ def handler_function(req_mess):
             message = 'Такой тренировки нет'
             buttons = [button('Разминка'), button('Комплекс на день')]
     if state == 2 and exercises:
-        if (
-                "следующее" in list_of_tok or "следующий" in list_of_tok or "следующая" in list_of_tok or "сделал" in list_of_tok or "сделала" in list_of_tok or "сделали" in list_of_tok) or (
-                'разминка' in list_of_tok or 'разминку' in list_of_tok):
+        if next(list_of_tok) or ('разминка' in list_of_tok or 'разминку' in list_of_tok):
             ind = randint(0, len(exercises) - 1)
             exercise_name, exercises_description = exercises[ind].split(';')
             exercises.pop(ind)
@@ -64,7 +62,7 @@ def handler_function(req_mess):
         message = exercises_description
         buttons = [button('Сделал')]
     elif state == 2 and not exercises:
-        message += '\n'+choice(['Тернировка прошла успешно!\nПродолжайте в том же духе', 'Хорошая работа!\nУдачного дня'])
+        message += '\n'+choice(['Тренировка прошла успешно!\nПродолжайте в том же духе', 'Хорошая работа!\nУдачного дня'])
         end_session = True
 
     response_message = {
